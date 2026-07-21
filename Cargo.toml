@@ -1,0 +1,68 @@
+[package]
+name = "binleak"
+version = "0.1.0"
+edition = "2021"
+description = "Static secret scanner for compiled binaries"
+license = "MIT"
+repository = "https://github.com/yourname/binleak"
+keywords = ["security", "binary", "secrets", "scanner"]
+categories = ["command-line-utilities", "development-tools"]
+
+[[bin]]
+name = "binleak"
+path = "src/main.rs"
+
+[dependencies]
+# Binary parsing
+goblin = { version = "0.8", features = ["elf", "pe", "mach"] }
+wasmparser = "0.219"
+
+# Parallelism
+rayon = "1.10"
+
+# Pattern matching
+regex = "1.11"
+once_cell = "1.20"
+
+# CLI
+clap = { version = "4.5", features = ["derive", "color"] }
+indicatif = { version = "0.17", features = ["rayon"] }
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_yaml = "0.9"
+
+# HTTP verification
+reqwest = { version = "0.12", features = ["blocking", "json"] }
+
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# Error handling
+anyhow = "1"
+thiserror = "2"
+
+# Encoding
+base64 = "0.22"
+
+# Entropy
+ordered-float = "4"
+
+# Colored output
+colored = "2"
+
+# Config
+toml = "0.8"
+dirs = "5"
+
+# File system utilities (used in scanner.rs)
+walkdir = "2"
+tempfile = "3"
+glob = "0.3"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true

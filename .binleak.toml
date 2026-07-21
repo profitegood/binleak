@@ -1,0 +1,17 @@
+[scan]
+min_entropy = 3.5
+verify = false
+
+[extraction]
+min_string_length = 6
+xor_bruteforce = true
+decode_base64 = true
+
+[output]
+redact = true
+
+# [rules]
+# custom = "./rules/company.yml"
+
+# [exclude]
+# patterns = ["*.test", "testdata/**"]

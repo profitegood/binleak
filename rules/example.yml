@@ -1,0 +1,15 @@
+rules:
+  - id: company_internal_token
+    description: "Company internal service token"
+    severity: critical
+    pattern: "INT-[A-Z0-9]{32}"
+
+  - id: internal_db_dsn
+    description: "Internal database connection string"
+    severity: high
+    pattern: "postgresql://[^:]+:[^@]+@internal\\.company\\.com"
+
+  - id: internal_api_key
+    description: "Internal API key pattern"
+    severity: high
+    pattern: "myapp_[A-Za-z0-9]{40}"
